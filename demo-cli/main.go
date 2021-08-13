@@ -2,18 +2,18 @@ package main
 
 import (
 	"context"
-	pb "github.com/franktrue/microshop/services/demo/proto/demo"
+	pb "github.com/franktrue/micro-services/demo-service/proto/demo"
 	"github.com/micro/go-micro/v2"
 	"log"
 )
 
 func main() {
 	service := micro.NewService(
-		micro.Name("services.demo-cli"),
+		micro.Name("micro-services.demo.cli"),
 	)
 	service.Init()
 
-	client := pb.NewDemoServiceClient("services.demo.service", service.Client())
+	client := pb.NewDemoService("micro-services.demo.service", service.Client())
 	rsp, err := client.SayHello(context.TODO(), &pb.DemoRequest{Name: "Franktrue"})
 	if err != nil {
 		log.Fatalf("服务调用失败：%v", err)
