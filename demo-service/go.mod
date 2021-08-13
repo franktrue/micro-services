@@ -1,4 +1,4 @@
-module github.com/franktrue/microshop/services/demo-service
+module github.com/franktrue/micro-services/demo-service
 
 go 1.16
 

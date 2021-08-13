@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	pb "github.com/franktrue/microshop/services/demo-service/proto/demo"
+	pb "github.com/franktrue/micro-services/demo-service/proto/demo"
 	"github.com/micro/go-micro/v2"
 	"log"
 )
@@ -17,7 +17,7 @@ func (d *DemoServiceHandler) SayHello(ctx context.Context, req *pb.DemoRequest, 
 func main() {
 	// 注册服务名必须和demo.proto中的package声明一致
 	service := micro.NewService(
-		micro.Name("services.demo.service"),
+		micro.Name("micro-services.demo.service"),
 	)
 
 	service.Init()
