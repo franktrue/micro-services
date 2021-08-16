@@ -2,7 +2,7 @@
  * @Description: 入口文件
  * @Author: franktrue 807615827@qq.com
  * @Date: 2021-08-14 11:25:56
- * @LastEditTime: 2021-08-14 13:09:15
+ * @LastEditTime: 2021-08-16 10:41:15
  */
 package main
 
@@ -11,6 +11,7 @@ import (
 	"github.com/franktrue/micro-services/user-service/handler"
 	pb "github.com/franktrue/micro-services/user-service/proto/user"
 	"github.com/franktrue/micro-services/user-service/repo"
+	"github.com/franktrue/micro-services/user-service/service"
 	"github.com/micro/go-micro/v2"
 	"log"
 )
@@ -26,7 +27,9 @@ func main() {
 
 	repository := repo.NewUserRepository(db)
 
-	userService := handler.NewUserService(repository)
+	token := service.NewTokenService(repository)
+
+	userService := handler.NewUserService(repository, token)
 
 	srv := micro.NewService(
 		micro.Name("micro-services.user.service"),
