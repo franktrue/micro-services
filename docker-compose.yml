@@ -6,6 +6,8 @@ services:
     build: ./user-cli
     environment: 
       MICRO_REGISTRY: "mdns"
+    networks:
+      - microservice
 
   user-service:
     depends_on:
@@ -20,6 +22,9 @@ services:
       DB_NAME: "micro_shop_user"
       DB_USER: "test"
       DB_PASSWORD: "test"
+    networks:
+      - microservice
+
   user-db:
     image: mysql:5.7
     container_name: user-db
@@ -34,6 +39,12 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: test
       MYSQL_PASSWORD: test
+    networks:
+      - microservice
+
+networks:
+  microservice:
+    external: true
 
 volumes:
   db_data: {}
